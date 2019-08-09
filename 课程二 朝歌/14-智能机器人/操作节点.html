@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>操作节点</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        body{
+            color: #888;
+        }
+	    li{list-style: none;}
+        .wrap{
+            width: 100%;
+            height: 800px;
+            padding: 50px 0;
+            background: linear-gradient(180deg,#92BFD9,#EFAA8E);
+        }
+        #box{
+            display: flex;
+            width: 800px;
+            height: 500px;
+            margin:auto;
+            border: 1px solid #ddd;
+        }
+        #box .left{
+            flex: 1;
+            padding: 30px 0 0 20px;
+            background-color: #fff;
+        }
+        #box .left > span{
+            line-height: 50px;
+            margin: 5px;
+            color: orange;
+        }
+        #box .left span.area{
+            color: #888;
+            cursor: pointer;
+        }
+        #box .left span.area:hover{
+            color: orange;
+        }
+        #box .left ul{
+            margin-top: 30px;
+        }
+        #box .left ul li{
+            float: left;
+            border:1px solid #ddd;
+            padding: 5px;
+            margin: 8px;
+        }
+        #box .left ul li span:hover{
+            color: orange;
+            cursor: pointer;
+        }
+        #box .right{
+            flex: 1;
+            background-color: rgba(0,0,0,.5);
+        }
+        #box .right ul{
+            margin:30px 20px;
+            color: #fff;
+        }
+        #box .right ul li{
+            float: left;
+            border:1px solid #fff;
+            padding: 2px 5px;
+            margin:0 10px 20px 0;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrap">
+        <div id="box">
+            <div class="left">
+                <span>热门目的地：</span>
+                <span class="area">马来西亚</span>
+                <span class="area">泰国</span>
+                <span class="area">三亚</span>
+                <span class="area">新西兰</span>
+                <span class="area">云南</span>
+                <span class="area">韩国</span>
+                <span class="area">澳大利亚</span>
+                <span class="area">美国</span>
+                <span class="area">法国</span>
+                <span class="area">巴塞罗那</span>
+                <span class="area">巴黎</span>
+                <span class="area">巴西</span>
+                <ul>
+                    <!-- <li>马来西亚 <span>x</span> </li> -->
+                </ul>
+            </div>
+            <div class="right">
+                <ul>
+                    <!--<li>你好</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+<script>
+    let oLeft = document.getElementById("left"),
+        aArea = document.getElementsByClassName("area"),
+        LeftUl = document.getElementsByTagName("ul")[0],
+        RightUl = document.getElementsByTagName("ul")[1];
+
+    for (let i = 0; i < aArea.length; i++) {
+        aArea[i].mark = 1;
+        aArea[i].onclick = function(){
+            var that = this;
+            if (this.mark) {
+                var Li1 = document.createElement("li"),
+                    Li2 = Li1.cloneNode(),
+                    txt = this.innerHTML,
+                    Span = document.createElement("span");
+                    Li1.innerHTML = txt + " | ";
+                    Span.innerHTML = "x";
+                    Li2.innerHTML = txt;
+                    Li1.appendChild(Span);
+                    LeftUl.appendChild(Li1);
+                    RightUl.appendChild(Li2);
+                Span.onclick = function(){
+                    LeftUl.removeChild(Li1);
+                    RightUl.removeChild(Li2);
+                    that.mark = 1;
+                }
+            }
+            this.mark = 0;    
+        }
+        
+    }
+    
+
+</script>
+</body>
+</html>

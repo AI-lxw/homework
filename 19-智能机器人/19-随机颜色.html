@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="智能机器人">
+    <title>19-随机颜色</title>
+    <style>
+        body{
+            font-size: 12px;
+        }
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        h1{
+            margin-top: 50px;
+            text-align: center;
+            color: #ddd;
+        }
+        #box{
+            width: 900px;
+            margin: 50px auto;
+            border-top:1px;
+        }
+        #box span{
+            display: inline-block;
+            width: 130px;
+            padding: 5px 10px;
+            text-align: center;
+        }
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <h1>点击开始or暂停</h1>
+    <div id="box">
+    </div>
+    <script>
+        var oBox = document.getElementById("box"),
+            flag = 1;
+        function fn1() {
+            timer = setInterval(function () {
+                oBox.innerHTML+= '<span style="background-color:'+fn2()+'">'+fn2()+'</span>';
+            },800)
+        }
+        function fn2() {
+            var r = Math.floor(Math.random()*256),
+                g = Math.floor(Math.random()*256),
+                b = Math.floor(Math.random()*256),
+                a = Math.floor( Math.random()*11 ).toFixed(1)/10;
+
+            return 'rgba('+r+','+g+','+b+','+a+')';
+
+        }
+        document.onclick = function () {
+            if(flag){
+                fn1();
+            }else {
+                clearInterval(timer)
+            }
+            flag = !flag;
+        }
+    </script>
+</body>
+
+</html>

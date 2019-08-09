@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-36期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 200px;
+            margin: 100px;
+            border: 1px solid #fff;
+        }
+        #box p{
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            text-indent:10px;
+            border: 1px solid #fff;
+            background-color: #000;
+            color: #fff;
+        }
+        #box ul{
+            overflow: hidden;
+            height: 0;
+        }
+        #box ul.active{
+            height:auto;
+        }
+        #box ul li{
+            background-color: #eee;
+            height: 25px;
+            line-height: 25px;
+            border-bottom:1px solid #fff;
+            font-size: 15px;
+            text-indent: 20px;
+        }
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <div id="box">
+        <p>同事</p>
+        <ul>
+            <li>毛毛</li>
+            <li>胖胖</li>
+            <li>妈耶</li>
+        </ul>
+        <p>同学</p>
+        <ul>
+            <li>漫汐</li>
+            <li>机器人兄弟</li>
+            <li>强兄弟</li>
+            <li>祥兄弟</li>
+        </ul>
+        <p>好友</p>
+        <ul>
+            <li>风屿</li>
+            <li>木马</li>
+            <li>凯迪</li>
+        </ul>
+    </div>
+    <script>
+       var box = document.getElementById("box"),
+           Ps = box.getElementsByTagName("p"),
+           Uls = box.getElementsByTagName("ul"),
+           Lis = box.getElementsByTagName("li"),
+           index = null;
+           length = Ps.length;
+
+       for(var i=0;i<length;i++){
+           Ps[i].index = i;
+           Ps[i].onclick = function () {
+               if(index!==null){
+                   Uls[index].className = "";
+               }
+               index = this.index;
+               Uls[index].className = "active";
+           }
+       }
+
+       for(var i=0,len=Lis.length;i<len;i++){
+          Lis[i].onmouseenter = function () {
+              this.style.backgroundColor = "pink";
+          };
+          Lis[i].onmouseleave = function () {
+               this.style.backgroundColor = "#eee";
+          };
+       }
+
+
+    </script>
+</body>
+</html>

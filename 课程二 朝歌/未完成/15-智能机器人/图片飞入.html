@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能机器人</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #000;
+        }
+        #box{
+            position: relative;
+            margin: 50px auto;
+            border: 1px solid #fff;
+            width: 1200px;
+            height: 800px;
+            font-size: 0;
+            background: url("images/3.jpg") no-repeat center;
+        }
+        #box span{
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            background: url("images/2.png") no-repeat center;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <!-- <span style = 'background-position: -50px -50px'></span> -->
+    </div>
+    <script src="js/animation.js"></script>
+    <script>
+        let Box = document.getElementById("box"),
+            WId = Box.clientWidth,
+            HEI = Box.clientHeight,
+            W = 50,
+            H = 50,
+            c = 16, //每列16
+            r = 24, //每行24格
+            str = ""
+            index = 0,
+            arr = [];
+        for (let i = 0; i < c; i++) {
+            for (let j = 0; j < r; j++) {
+                str += `<span style = "background-position: -${j*W}px -${i*H}px;"></span>`;                
+            }
+        }
+        Box.innerHTML = str;  
+        let aSpan = document.getElementsByTagName("span"),
+            len = aSpan.length;
+        for (let i = 0; i < len; i++) {
+            arr[i] = i;
+            
+        }
+        let timer = setInterval(fn,13)
+        function fn(){
+            if (typeof index !== "undefined") {
+                index = Math.floor(Math.random()*len);
+                console.log(index);
+                let x = (index%24)*W, 
+                    y = Math.floor(index/24)*H;
+
+                animation(aSpan[arr[index]],{
+                    data:{
+                        left:x,
+                        top: y,
+                        opacity: 1
+                    },
+                    option:{
+                        easing:"Back",
+                        speed:1
+                    }
+                },500)
+                index ++;
+            }else{
+                clearInterval(timer)
+            }
+            
+            
+        }
+        
+    </script>
+</body>
+</html>

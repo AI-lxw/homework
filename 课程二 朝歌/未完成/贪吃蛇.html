@@ -1,0 +1,323 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<!--网站编码格式，UTF-8 国际编码，GBK或 gb2312 中文编码-->
+
+<meta charset="UTF-8">
+
+<meta name="Keywords" content="关键词一，关键词二">
+
+<meta name="Description" content="网站描述内容">
+
+<title>Document</title>
+
+<style>
+
+html {
+
+background: #8D946A;
+
+}
+
+pattern path {
+
+stroke: #8D946A;
+
+}
+
+.snake-group {
+
+stroke: #292A18;
+
+}
+
+.snake {
+
+-webkit-animation: stroke-anim 4s linear infinite;
+
+animation: stroke-anim 4s linear infinite;
+
+}
+
+@-webkit-keyframes stroke-anim {
+
+to {
+
+stroke-dashoffset: 0;
+
+}
+
+}
+
+@keyframes stroke-anim {
+
+to {
+
+stroke-dashoffset: 0;
+
+}
+
+}
+
+/* Values generated from JS */
+
+.snake {
+
+stroke-dasharray: 32 224;
+
+stroke-dashoffset: 256;
+
+-webkit-animation-timing-function: steps(32);
+
+animation-timing-function: steps(32);
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+.dot {
+
+-webkit-animation: dot1 4s steps(1) infinite;
+
+animation: dot1 4s steps(1) infinite;
+
+}
+
+@-webkit-keyframes dot1 {
+
+0%,
+
+26%,
+
+91.1% {
+
+opacity: 1;
+
+}
+
+26.1%,
+
+ 91% {
+
+opacity: 0;
+
+}
+
+}
+
+@keyframes dot1 {
+
+0%,
+
+26%,
+
+91.1% {
+
+opacity: 1;
+
+}
+
+26.1%,
+
+91% {
+
+opacity: 0;
+
+}
+
+}
+
+.dot-2 {
+
+-webkit-animation-name: dot2;
+
+animation-name: dot2;
+
+}
+
+@-webkit-keyframes dot2 {
+
+0%,
+
+26%,
+
+51%,
+
+100% {
+
+opacity: 0;
+
+}
+
+26.1%,
+
+ 50% {
+
+opacity: 1;
+
+}
+
+}
+
+@keyframes dot2 {
+
+0%,
+
+26%,
+
+51%,
+
+100% {
+
+opacity: 0;
+
+}
+
+26.1%,
+
+50% {
+
+opacity: 1;
+
+}
+
+}
+
+.dot-3 {
+
+-webkit-animation-name: dot3;
+
+animation-name: dot3;
+
+}
+
+@-webkit-keyframes dot3 {
+
+0%,
+
+50%,
+
+92%,
+
+100% {
+
+opacity: 0;
+
+}
+
+50.1%,
+
+ 92% {
+
+opacity: 1;
+
+}
+
+}
+
+@keyframes dot3 {
+
+0%,
+
+50%,
+
+92%,
+
+100% {
+
+opacity: 0;
+
+}
+
+50.1%,
+
+92% {
+
+opacity: 1;
+
+}
+
+}
+
+svg {
+
+position: absolute;
+
+top: 0;
+
+right: 0;
+
+bottom: 0;
+
+left: 0;
+
+margin: auto;
+
+max-width: 144px;
+
+max-height: 90vh;
+
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-8 -8 64 84" shape-rendering="crispEdges">
+
+<defs>
+
+<pattern id="pattern" width="8" height="8" patternUnits="userSpaceOnUse" x="-4" y="-4">
+
+<path d="M 0 0 L8 0 8 8 0 8 z" fill="none"></path>
+
+</pattern>
+
+</defs>
+
+<g
+
+class="snake-group"
+
+stroke-linejoin="miter"
+
+stroke-linecap="square"
+
+stroke-width="8"
+
+fill="none">
+
+<path class="dot dot-1" d="M28,48 l8,0z" />
+
+<path class="dot dot-2" d="M-4,48 l8,0z" />
+
+<path class="dot dot-3" d="M4,16 l8,0z" />
+
+<path class="snake"
+
+d="M0 16 h48 v16 H32 v32 H0 V48 h16 V0 H0 v16"/>
+
+</g>
+
+<rect x="-4.5" y="-4.5" width="57" height="73" fill="url(#pattern)"></rect>
+
+</svg>
+
+</div>
+<script>
+	var a = 1;
+	switch (a){
+		case: 
+	}
+</script>
+
+</body>
+
+</html>

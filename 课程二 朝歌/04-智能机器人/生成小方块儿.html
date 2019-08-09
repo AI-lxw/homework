@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能机器人</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        input{
+            width: 200px;   
+            height: 45px;
+        }
+        span{
+            display: inline-block;
+            vertical-align: middle;
+            width: 100px;
+            height: 45px;
+            line-height: 45px;
+            background-color: #eb5651;
+            color: #fff;
+            text-align: center;
+
+        }
+        #box{
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+        #box>div{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            font-size:30px;
+            line-height: 50px;
+            text-align: center;
+            background: skyblue;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="text">
+    <span>巴拉巴拉变</span>
+    <div id="box"> </div>
+    <script>
+        let Box = document.getElementById("box"),
+            Input = document.getElementsByTagName("input")[0],
+            Span = document.getElementsByTagName("span")[0];
+        Span.onclick = function(){
+            let Num = Input.value,
+                mid = (Num-1)/2,
+                str = "";
+                Input.value = "";
+            console.log(Num)
+            for(let i=0;i<Num;i++){
+                if(i <= mid){
+                    str += "<div style='top:"+i*50+"px;left:"+i*50+"px;'>"+(i+1)+"</div>"
+                }else{
+                    str += "<div style='top:"+i*50+"px;left:"+(Num-i-1)*50+"px;'>"+(i+1)+"</div>"
+                }
+            }
+            Box.innerHTML = str;
+            
+        }
+        
+    </script>
+</body>
+</html>

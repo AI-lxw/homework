@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>14-搜索修改</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 400px;
+            padding: 20px 10px;
+            border: 1px solid #ddd;
+            margin: 100px auto;
+            background-color: #ffccca;
+            border-radius: 5px;
+            color: #666;
+        }
+        #box > span{
+            /*display: inline-block;*/
+            background-color: #f60;
+            padding: 2px 5px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        #box p{
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 2em;
+        }
+        #box #rBox{
+            margin-left: 10px;
+        }
+        #box p span{
+            color: red;
+        }
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <div id="box">
+        <input type="text" id="sBox">
+        <span id="search">搜索</span>
+        <input type="text" id="rBox">
+        <span id="replace">替换</span>
+        <p id="txt">
+            曾经我自诩半个诗人，见山是深情伟岸，见海是热情澎湃，见花见草信他们皆有故事，云海江潮，虫鸣鸟啼都暗藏情愫。唯独见了你，山川沉默，海面静谧，云海不再翻涌，江潮不再澎湃，花鸟鱼虫被光与尘凝固，世界万籁俱寂，只剩下你。
+        </p>
+    </div>
+    <script>
+        var Box = document.getElementById("box"),
+            sBox = document.getElementById("sBox"),
+            oSearch = document.getElementById("search"),
+            rBox = document.getElementById("rBox"),
+            oReplace = document.getElementById("replace"),
+            Ptxt = document.getElementById("txt"),
+            Txt = Ptxt.innerHTML;//原来的没有加span的p的innerHTML
+
+        oSearch.onclick = function () {
+           var sValue =sBox.value,//把搜索框中的值存起来
+               str = Txt.split(sValue), //按搜索框的值切割
+               rPlaceTxt = str.join("<span>"+sValue+"</span>");//切割后搜索的值没啦！通过加span的方式拼接回去
+            if(sValue!=""){
+                Ptxt.innerHTML = rPlaceTxt;
+            } else {
+                Ptxt.innerHTML = Txt;
+            }
+        }
+        oReplace.onclick = function () {
+            var sValue = sBox.value,
+                rValue = rBox.value,//把替换框中的值存起来
+                str = Txt.split(sValue), //按替换框的值切割
+                rPlaceTxt = str.join("<span>"+rValue+"</span>");//切割后搜索的值没啦！通过加span的方式拼接回去
+            Txt = str.join(rValue);//改下原p的innerHTML
+            if(rValue!=""){
+                Ptxt.innerHTML = rPlaceTxt;
+            }
+        }
+
+
+    </script>
+</body>
+</html>

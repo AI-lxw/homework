@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="智能机器人" content="智能机器人">
+    <title>智能机器人</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        .wrap{
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            background-color: pink;
+            margin: 50px auto;
+            text-align: center;
+            font-size: 25px;
+			font-weight: 500;
+            color: white;
+        }
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <div class="wrap">box1</div>
+    <div class="wrap">box2</div>
+    <script>
+        var Wrap = document.getElementsByClassName("wrap");
+        Wrap[0].onmouseenter = function () {
+            Wrap[1].innerHTML = "鼠标移入box1";
+        }
+        Wrap[0].onmouseleave = function () {
+            Wrap[1].innerHTML = "鼠标离开box1";
+        }
+        Wrap[1].onmouseenter = function () {
+            Wrap[0].innerHTML = "鼠标移入box2";
+        }
+        Wrap[1].onmouseleave = function () {
+            Wrap[0].innerHTML = "鼠标离开box2";
+        }
+    </script>
+</body>
+</html>

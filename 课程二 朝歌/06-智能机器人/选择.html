@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="智能机器人" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能机器人</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #box{
+            overflow: hidden;
+            width: 250px;
+            margin: 50px auto;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+        } 
+        #box .title{
+            width: 100%;
+            height: 66px;
+            line-height: 66px;
+            background-color: #FABE0F;
+            border-bottom: 1px solid #eff1ef;
+            text-align: center;
+            color: #fff;
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        #box ul li{
+            height: 40px;
+            line-height: 40px;
+            border-bottom:1px solid #273147;
+            background: url(image/ckbg1.jpg) no-repeat 15px 10px #11151d;
+            font-size: 12px;
+            text-indent: 60px;
+            color: #fff;
+        }
+        #box p.on,#box ul li.on{
+            background: url(image/ckbg2.jpg) no-repeat 15px 10px #11151d;
+        }
+        #box ul li:hover{
+            cursor: pointer;
+        }
+        #box p{
+            height: 40px;
+            line-height: 40px;
+            border-bottom:1px solid #273147;
+            background: url(image/ckbg1.jpg) no-repeat 15px 10px #11151d;
+            font-size: 12px;
+            text-indent: 60px;
+            color: #fff;
+            cursor: pointer;
+        }
+        #box .FAll{
+            height: 40px;
+            line-height: 40px;
+            background-color: #11151d;
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+        #box .FAll:hover{
+            background-color: #273147;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="title">
+            湘菜菜谱
+        </div>
+        <ul>
+            <li>面包全鸭</li>
+            <li>东安子鸡</li>
+            <li>五元神仙鸡</li>
+            <li>板栗烧菜心</li>
+            <li>组庵鱼翅</li>
+            <li>红煨鱼翅</li>
+            <li>吉首酸肉</li>
+            <li>油炸肉丸</li>
+            
+        </ul>
+        <p>全选</p>
+        <div class="FAll">反选</div>
+    </div>
+    <script>
+        let aLi = document.getElementsByTagName("li"),
+            checkAll = document.getElementsByTagName("p")[0],
+            Inverse =  document.getElementsByClassName("FAll")[0];
+            
+        for (let i = 0; i < aLi.length; i++) {
+            aLi[i].onOff = false;
+            aLi[i].onclick = function(){
+                if (!this.onOff) {
+                    this.className = "on";
+                }else{
+                    this.className = "";
+                }
+                this.onOff = !this.onOff;
+                JudgeAll();
+            }
+        }
+
+        //全选
+        checkAll.onOff = false;
+        checkAll.onclick = function(){
+            for (let i = 0; i < aLi.length; i++) {
+               if(!this.onOff){
+                    aLi[i].className = "on";
+                    aLi[i].onOff = true;
+               }else{
+                    aLi[i].className = "";
+                    aLi[i].onOff = false;
+               }
+            }
+            JudgeAll();
+        }
+            
+        
+        //反选
+        Inverse.onOff = false;
+        Inverse.onclick = function(){
+            
+            for (let i = 0; i < aLi.length; i++) {
+                if (aLi[i].onOff === false) {
+                    aLi[i].className = "on";
+                    aLi[i].onOff = true;
+                }else{
+                    aLi[i].className = "";
+                    aLi[i].onOff = false;
+                }
+                
+            }
+           JudgeAll();
+        }
+
+        //判断全选
+        function JudgeAll() {
+            let  markAll = true;  
+            for (let i = 0; i < aLi.length; i++) {
+                if (!aLi[i].onOff) {  //如果有一个取消了
+                    markAll = false; //全选开关就关了
+                }
+            }
+            if(markAll){
+                checkAll.className = "on"
+                checkAll.onOff = true;
+            }else{
+                checkAll.className = "";
+                checkAll.onOff = false;
+            }
+        }
+    </script>
+</body>
+</html>

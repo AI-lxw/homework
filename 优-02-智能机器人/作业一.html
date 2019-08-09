@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="机器人">
+    <title>作业一</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        div{
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            background-color: #eee;
+            margin: 50px auto;
+            color: #999;
+            text-align: center;
+        }
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <div id="box1">box1</div>
+    <div id="box2">box2</div>
+</body>
+<script>
+    var box1 = document.getElementById("box1");
+        box2 = document.getElementById("box2");
+    var normalC = "#eee";
+        box1.onmouseenter = function () {
+            box2.style.backgroundColor = "orange";
+        }
+        box1.onmouseleave = function () {
+            box2.style.backgroundColor = normalC;
+        }
+        box2.onmouseenter = function () {
+            box1.style.backgroundColor = "orange";
+        }
+        box2.onmouseleave = function () {
+            box1.style.backgroundColor = normalC;
+        }
+</script>
+</html>

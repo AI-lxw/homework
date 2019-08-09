@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>星级评分</title>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+    <style>
+        body{
+            font-size: 14px;
+            color: #888888;
+        }
+        *{margin:0;padding: 0;}
+        ul,li{
+            list-style: none;
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        .box{
+            width: 300px;
+            height: 80px;
+            padding: 20px 15px;
+            margin: 50px auto;
+            border: 1px solid #ccc; 
+        }
+        .box .judge{
+            float: left;
+            margin: 3px 10px 0 0;
+        }
+        .box ul li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 3px;
+            color: #CFCFCF;
+            text-align: center;
+        }
+        .box ul li i{
+            font-size: 18px;
+        }
+        .box ul li i.on{
+            color: #FF0036;
+        }
+    </style>
+</head>
+<body>
+    <!-- #CFCFCF -->
+    <div class="box">
+        <span class="judge">星级评分</span>
+        <ul class="clearfix">
+            <li><i class="iconfont icon-31shoucang"></i></li>
+            <li><i class="iconfont icon-31shoucang"></i></li>
+            <li><i class="iconfont icon-31shoucang"></i></li>
+            <li><i class="iconfont icon-31shoucang"></i></li>
+            <li><i class="iconfont icon-31shoucang"></i></li>
+        </ul>
+        <span class="pro">差评</span>
+        
+    </div>
+   <script>
+       let Stars = document.getElementsByTagName("i"),
+           Ul = document.getElementsByTagName("ul")[0],
+           Pro = document.getElementsByClassName("pro");
+
+        for (let i = 0; i < Stars.length; i++) {
+            Stars[i].onmouseenter = function(){
+                for (let j = 0; j <= i; j++) {
+                    Stars[j].classList.add("on");
+                    
+                }
+            }
+            Stars[i].onclick = function(){
+                for (let j = 0; j <= i; j++) {
+                    Stars[j].classList.add("on");
+                    
+                }
+            }
+            Stars[i].onmouseout = function(){
+                for (let j = 0; j <= i; j++) {
+                    Stars[j].classList.remove("on");
+                    
+                }
+            }
+        
+            
+        }
+        
+   </script> 
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>九九乘法表-机器人</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        body{
+            font-size: 16px;
+            color: #666;
+        }
+        #box{
+            width: 900px;
+            margin: 50px;
+        }
+        #box span{
+            display: inline-block;
+            width: 60px;
+            padding: 3px 6px;
+            border: 1px solid #ff79b8;
+            margin:5px;
+        }
+	    li{list-style: none;}
+
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <div id="box">
+        <span>1x1=1</span>
+    </div>
+    <script>
+        var box = document.getElementById("box");
+        for (var i=1;i<10;i++){//每一行做一个循环
+            for(var j=1;j<i;j++){//每一行里有一个循环
+                box.innerHTML +="<span>"+i+"x"+j+"="+i*j+"</span>";
+            }
+            box.innerHTML += "<br>";
+        }
+        box.innerHTML += "<hr>";
+
+        for(var i=1;i<10;i++){
+            for(var j=i;j<10;j++){
+                box.innerHTML +="<span>"+i+"x"+j+"="+i*j+"</span>";
+            }
+            box.innerHTML += "<br>";
+        }
+        box.innerHTML += "<hr>";
+
+        for(var i=9;i>0;i--){
+            for(var j=i;j>0;j--){
+                box.innerHTML +="<span>"+i+"x"+j+"="+i*j+"</span>";
+            }
+            box.innerHTML += "<br>";
+        }
+        box.innerHTML += "<hr>";
+
+        for(var i=9;i>0;i--){
+            for(var j=i;j<10;j++){
+                box.innerHTML +="<span>"+i+"x"+j+"="+i*j+"</span>";
+            }
+            box.innerHTML += "<br>";
+        }
+        box.innerHTML += "<hr>";
+    </script>
+</body>
+</html>

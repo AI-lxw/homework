@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        #wrap {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+
+        #wrap .pic {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 1000%;
+        }
+
+        .pic li {
+            float: left;
+        }
+
+
+        .tab {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -100px;
+            width: 150px;
+            height: 30px;
+            padding-left: 10px;
+            background: rgba(0, 0, 0, .2);
+            border-radius: 15px;
+            transition: .5s;
+            transform: scale(.8);
+        }
+
+        .tab:hover {
+            background: rgba(0, 0, 0, .5);
+            transform: scale(1.2);
+        }
+
+        .tab li {
+            width: 20px;
+            height: 20px;
+            float: left;
+            background: #fff;
+            border-radius: 50%;
+            margin: 5px 10px 0 0;
+            opacity: .35;
+            cursor: pointer;
+        }
+
+        .tab li.on {
+            position: absolute;
+            top:0;
+            background: #f60;
+            opacity: 1;
+            z-index: 99;
+        }
+
+        #wrap>div {
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            width: 30px;
+            height: 60px;
+            background: rgba(0, 0, 0, .2);
+            text-align: center;
+            font-size: 18px;
+            line-height: 60px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #wrap>div:hover {
+            background: rgba(0, 0, 0, .5);
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul class="pic">
+            <li>
+                <img src="img/1.png">
+            </li>
+            <li>
+                <img src="img/2.png">
+            </li>
+            <li>
+                <img src="img/3.png">
+            </li>
+            <li>
+                <img src="img/4.png">
+            </li>
+            <li>
+                <img src="img/5.png">
+            </li>
+            <li>
+                <img src="img/1.png">
+            </li>
+        </ul>
+        <ul class="tab">
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="prev"> < </div>
+        <div class="next"> > </div>
+    </div>
+    <script src="moveTimes.js"></script>
+    <script>
+        const   oWrap = document.getElementById("wrap"),
+                oNext = document.getElementsByClassName("next")[0],
+                oPrev = document.getElementsByClassName("prev")[0],
+                oPic = document.getElementsByClassName("pic")[0],
+                aPicLi = document.querySelectorAll(".pic li"),
+                aTabLi = document.querySelectorAll(".tab li"),
+                aTabLiOn = document.querySelectorAll(".tab .on")[0],
+                imgW = 640;
+        let     date = new Date(),
+                index = 0,
+                timer = null;
+        //右边按钮
+        oNext.onclick = () =>{//点击一次向左边移动index增加值乘以图片宽度
+            if(new Date() - date < 800) return;//两次点击间隔小于800,就不动
+            date = new Date();
+            index++;
+            if(index === aPicLi.length-1){
+                Move(oPic,{left:-index*imgW},500,()=>{//最后一张图片,也就是跟第一张图片一模一样的那一个在往左边走动完的瞬间通过回调函数,让oPic回去,也就是真正的第一张图片出来
+                    oPic.style.left = 0;
+                    index = 0;//回到第一个的下标
+                });
+                Move(aTabLiOn,{opacity:0},250,()=>{//在最后一个上面通过透明消失,在回调函数里面让他在第一个上面出现
+                    aTabLiOn.style.left = "10px";//瞬间回去
+                    Move(aTabLiOn,{opacity:1},250);//同时opacity变为1出现
+                })
+            } else {
+                Move(oPic,{left:-index*imgW},500);//每点击一次向左走一个图片的位置
+                Move(aTabLiOn,{left:index*30+10},500);//每点击一次改变小球的位置
+            }
+        }
+        //左边按钮
+        oPrev.onclick = () =>{//点击一次向左边移动index增加值乘以图片宽度
+            if(new Date() - date < 800) return;//两次点击间隔小于800,就不动
+            date = new Date();
+            if(index === 0){//一上来就对第一个做判断
+                oPic.style.left = -(aPicLi.length-1)*imgW + 'px';
+                index = aPicLi.length - 1;//把倒数第二张图片,也是就是最后以上的图片取出来,在通过index--获取这个图片的下标
+                // Move(aTabLiOn,{opacity:0},250,()=>{//在最前面一个上面通过透明消失,在回调函数里面让他在最后一个上面出现
+                //     aTabLiOn.style.left = (aTabLi.length - 2)*30 + 10+'px';//瞬间到最后面去,一共有6个球,但是和前面的距离只有四个球
+                //     Move(aTabLiOn,{opacity:1},250);//同时opacity变为1出现
+                // })
+            }
+            index--;
+            if(index !== aTabLi.length - 2){
+                Move(aTabLiOn,{left:index*30+10},500);//每点击一次改变小球的位置
+            }
+            Move(oPic,{left:-index*imgW},500);
+        }
+        //按钮循环
+        timer = setInterval(oNext.onclick,500);
+        for(let i=0;i<aTabLi.length;i++){//一开始第一个和第二个是重合的,所以这个长度是不能变的
+            aTabLi[i].onclick = () => {
+                if(i===0) return;//如果点击到下标为1的那个,也就是黄色球的,我们就不执行
+                Move(oPic,{left:-(i-1)*imgW},500);//图片运动,这里的i是从黄色小球那一个,也就是第一个开始的,所以我们这里要减一
+                let num = Math.abs(index - i + 1);//黄色的小球是和第二个li重合的,我们点击的第二个其实是第三个,中间有一个间隔
+                if(num>1){
+                    Move(aTabLiOn,{opacity:0},250,()=>{
+                    aTabLiOn.style.left = (i-1)*30 + 10 + 'px';
+                    Move(aTabLiOn,{opacity:1},250);
+                    })
+                } else {
+                    Move(aTabLiOn,{left:(i-1)*30+10},500);
+                }
+                index = i-1;//上面190行加了1,所以这里需要减一下
+            }
+        }
+        //console.log(aTabLi.length)
+        oWrap.onmouseenter = ()=>{
+            clearInterval(timer);
+        }
+        oWrap.onmouseleave = ()=>{
+            timer = setInterval(oNext.onclick,500);
+        }
+    </script>
+</body>
+</html>

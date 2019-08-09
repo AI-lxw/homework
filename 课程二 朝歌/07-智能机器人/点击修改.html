@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="智能机器人" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能机器人</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 500px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #box ul li{
+            height: 40px;
+            padding-top: 20px;
+            border-bottom:1px solid #ccc;
+        }
+        #box ul li p,#box ul li input{
+            float: left;
+            outline: none;
+            border: none;
+        }
+        #box ul li p{
+            text-indent: 10px;
+        }
+        #box ul li input{
+            display: none;
+            margin-left: 10px;
+            width: 80%;
+            height: 25px;
+        }
+        #box ul li input.on{
+            display: block;
+        }
+        #box ul li botton{
+            float: right;
+            padding:3px;
+            margin-right: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #eee;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li>
+                <p>朝歌</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+            <li>
+                <p>风屿</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+            <li>
+                <p>木马</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+            <li>
+                <p>凯迪</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+            <li>
+                <p>乌拉</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+            <li>
+                <p>小机器人</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+        </ul>
+    </div>
+    <script>
+        let Box = document.getElementById("box"),
+            aP = Box.getElementsByTagName("p"),
+            Input = Box.getElementsByTagName("input"),
+            Bottons = Box.getElementsByTagName("botton"),
+            onOff = true;
+        for (let i = 0; i < Bottons.length; i++) {
+            Bottons[i].onclick = function(){
+                if(onOff){
+                    aP[i].style.display = "none";
+                    Input[i].className = "on";
+                    this.innerHTML = "确认";
+                    this.style.backgroundColor = "#000";
+                    this.style.color = "#fff";
+                }else{
+                    aP[i].innerHTML = Input[i].value;
+                    Input[i].className = "";
+                    aP[i].style.display = "block";
+                    this.innerHTML = "修改";
+                    this.style.backgroundColor = "#eee";
+                    this.style.color = "#000";
+                }
+                onOff = !onOff;
+            }
+            
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无缝2</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+        }
+        img{
+            vertical-align: top;
+        }
+        #wrap{
+            overflow: hidden;
+            position: relative;
+            width: 1200px;
+            border: 1px solid red;
+            height: 336px;
+            margin:50px auto;
+            
+        }
+        #wrap .img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 1000%;
+        }
+        .img li{
+            position: absolute;
+        }
+
+
+        .img li.List1{
+            z-index: 1;
+            transform: scale(0.8) rotateX(-4deg) rotateY(-30deg);
+            transform-origin:0 100%;
+        }
+        .img li.List2{
+            z-index: 2;
+            transform:translateX(235px);
+            
+        }
+        .img li.List3{
+            transform: scale(0.8) translateX(700px) rotateX(-4deg) rotateY(30deg) ; 
+            transform-origin:100% 100%;
+            
+        }
+        .img li.List4{
+            transform:translateX(1200px);
+            
+        }
+        .img li.List5{
+            transform:translateX(1435px);
+            
+        }
+        
+     
+        #wrap>div{
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            width: 30px;
+            height: 60px;
+            background: rgba(0,0,0,.2);
+            text-align: center;
+            font-size: 18px;
+            line-height: 60px;
+            color: #fff;
+            cursor: pointer;
+        }
+        #wrap>div:hover{
+            background: rgba(0,0,0,.5);
+        }
+        .next{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="wrap">
+            <ul class="img">
+                <li class="List1"><img src="img/1.jpg"></li>
+                <li class="List2"><img src="img/2.jpg"></li>
+                <li class="List3"><img src="img/3.jpg"></li>
+                <li class="List4"><img src="img/4.jpg"></li>
+                <li class="List5"><img src="img/5.jpg"></li>
+            </ul>
+            <!-- <div class="prev"><</div>
+            <div class="next">></div> -->
+        </div>
+    </div> 
+    <script>
+        let Lis = document.getElementsByTagName("li"),
+            aName = [];
+        for (const item of Lis) {
+            
+        }
+    </script>
+</body>
+</html>

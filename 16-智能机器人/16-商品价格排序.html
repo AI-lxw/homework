@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-36期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        body{
+            font-size: 14px;
+        }
+	    li{list-style: none;}
+        #top{
+            width: 1000px;
+            height: 40px;
+            line-height: 40px;
+            margin: 50px auto 0;
+            background-color: #F5F5F5;
+            border:1px solid #ddd;
+        }
+        #top ul{
+            position: relative;
+        }
+        #top ul li{
+
+            float: left;
+            margin: 0 20px;
+        }
+        #top ul #hover{
+            width: 100px;
+            text-align: center;
+        }
+        #top ul #hover .on{
+            color: #ff3607;
+        }
+        #top ul li .price{
+            display: none;
+            position: absolute;
+            top:0;
+            padding: 0 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        #content ul{
+            width: 1000px;
+            margin: 10px auto;
+        }
+        #content ul li{
+            float: left;
+            width: 220px;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+        }
+        #content li img{
+            margin: 10px;
+            width: 200px;
+            height: 200px;
+        }
+        #content li p {
+            text-indent: 10px;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #ff3179;
+        }
+        #content li span{
+            display: inline-block;
+            margin-left: 10px;
+            padding: 2px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            background-color: orange;
+            font-size: 12px;
+            color: #fff;
+        }
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <div id="top">
+        <ul>
+            <li>流行</li>
+            <li>热销</li>
+            <li>上新</li>
+            <li id="hover">
+                <span class="on">价格</span>
+                <div class="price">
+                    <p>价格从高到低</p>
+                    <p>价格从低到高</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <ul>
+            <li>
+                <img src="images/xh_img1.jpg" alt="">
+                <p>紫色冷艳系列</p>
+                <span>￥450</span>
+            </li>
+            <li>
+                <img src="images/xh_img2.jpg" alt="">
+                <p>粉色玫瑰浪漫系列</p>
+                <span>￥412</span>
+            </li>
+            <li>
+                <img src="images/xh_img3.jpg" alt="">
+                <p>紫色冷艳系列</p>
+                <span>￥445</span>
+            </li>
+            <li>
+                <img src="images/xh_img4.jpg" alt="">
+                <p>粉色玫瑰浪漫系列</p>
+                <span>￥999</span>
+            </li>
+            <li>
+                <img src="images/xh_img5.jpg" alt="">
+                <p>紫色冷艳系列</p>
+                <span>￥666</span>
+            </li><li>
+                <img src="images/xh_img6.jpg" alt="">
+                <p>粉色玫瑰浪漫系列</p>
+                <span>￥1314</span>
+            </li>
+            <li>
+                <img src="images/xh_img7.jpg" alt="">
+                <p>粉色玫瑰浪漫系列</p>
+                <span>￥520</span>
+            </li>
+            <li>
+                <img src="images/xh_img8.jpg" alt="">
+                <p>紫色冷艳系列</p>
+                <span>￥522</span>
+            </li>
+
+        </ul>
+    </div>
+    <script>
+        var oSpan = document.getElementsByTagName("span")[0],
+            oPrice = document.getElementsByClassName("price")[0],
+            Ps = document.getElementsByTagName("p"),
+            oContent = document.getElementById("content"),
+            liSpan = oContent.getElementsByTagName("span"),
+            contentLi = oContent.getElementsByTagName("li"),
+            arr = [];
+            length = contentLi.length;
+
+        oSpan.onmouseenter = function () {
+            oPrice.style.display = "block";
+        }
+        oPrice.onmouseleave = function () {
+            oPrice.style.display = "none";
+        }
+
+
+        //储存数据
+        for(var i=0;i<length;i++){
+            arr[i] = {
+                liHTML: contentLi[i].innerHTML,
+                num: liSpan[i].innerHTML.substring(1)*1,
+            }
+        }
+
+        //由高到低
+        Ps[0].onclick = function () {
+            oSpan.innerHTML = this.innerHTML;
+            arr.sort(function (a,b) {
+                return(b.num-a.num)
+            })
+            add();
+        }
+        //由低到高
+        Ps[1].onclick = function () {
+            oSpan.innerHTML = this.innerHTML;
+            arr.sort(function (a,b) {
+                return(a.num-b.num)
+            })
+            add();
+        }
+
+        function add() {
+            for(var i=0;i<length;i++){
+                contentLi[i].innerHTML = arr[i].liHTML;
+            }
+        }
+
+
+    </script>
+</body>
+</html>

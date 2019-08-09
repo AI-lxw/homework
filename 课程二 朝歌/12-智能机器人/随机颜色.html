@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能机器人</title>
+    <style>
+        body{
+            font-size: 12px;
+        }
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        li{list-style: none;}
+        h1{
+            margin-top: 50px;
+            text-align: center;
+            color: #888;
+        }
+        #box{
+            width: 900px;
+            margin: 50px auto;
+            border-top:1px;
+        }
+        #box span{
+            display: inline-block;
+            width: 150px;
+            margin: 2px;
+            padding: 10px 10px;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>为了保护亲的浏览器 可以点击开始or暂停 点我呀！</h1>
+    <div id="box">
+    </div>
+    <script>
+        let Box = document.getElementById("box"),
+            OnOff = true;
+        function Randon(){
+            let r = Math.floor(Math.random()*256),
+                g = Math.floor(Math.random()*256),
+                b = Math.floor(Math.random()*256),
+                a = Math.floor(Math.random()*11).toFixed(1)/10;
+                return `rgba(${r},${g},${b},${a})`;
+        }
+        function fn() {
+            timer = setInterval(function(){
+                Box.innerHTML += `<span style = "background-color:${Randon()}"> ${Randon()} </span>`
+            },800)
+        }
+        document.onclick = function(){
+            OnOff ? fn() : clearInterval(timer);
+            OnOff = !OnOff;
+        }
+    </script>
+</body>
+
+</html>

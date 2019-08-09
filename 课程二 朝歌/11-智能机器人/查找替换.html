@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能机器人</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 439px;
+            padding: 20px 10px;
+            border: 1px solid #ddd;
+            margin: 100px auto;
+            background-color: #ffccca;
+            border-radius: 5px;
+            color: #666;
+        }
+        #box > span{
+            /*display: inline-block;*/
+            background-color: #f60;
+            padding: 2px 5px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        #box p{
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 2em;
+        }
+        #box #rBox{
+            margin-left: 10px;
+        }
+        #box p span{
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="box">
+        <input type="text" id="sBox">
+        <span id="search">搜索</span>
+        <input type="text" id="rBox">
+        <span id="replace">替换</span>
+        <span id="again">重置</span>
+        <p id="txt">
+            浮世万千 吾爱有三 日月与卿 日为朝 月为暮 卿为朝朝暮暮 
+            I love three things in this world,the sun ,the moon and you.The sun for the day,the moon for the night,and you forever!
+            “游乐园那个，可以骑在上面的”
+        　　“有音乐的叫旋转什么?”
+        　　“木马。”
+        　　“mua”
+        </p>
+    </div>
+    <script>
+        let Box = document.getElementById("box"),
+            sBox = document.getElementById("sBox"),
+            oSearch = document.getElementById("search"),
+            rBox = document.getElementById("rBox"),
+            oReplace = document.getElementById("replace"),
+            oAgain = document.getElementById("again"),
+            Ptxt = document.getElementById("txt"),
+            Txt = Ptxt.innerHTML;
+            console.log(Txt)
+        oSearch.onclick = function () {
+           var sValue =sBox.value,//把搜索框中的值存起来
+               str = Txt.split(sValue), //按搜索框的值切割
+               rPlaceTxt = str.join(`<span>${sValue}</span>`);//切割后搜索的值没啦！通过加span的方式拼接回去
+            if(sValue!=""){
+                Ptxt.innerHTML = rPlaceTxt;
+            } else {
+                Ptxt.innerHTML = Txt;
+            }
+        }
+        oReplace.onclick = function () {
+            sValue = sBox.value,
+            rValue = rBox.value,
+            str = Txt.split(sValue),
+            rPlaceTxt = str.join(`<span>${rValue}</span>`);
+            if(rValue!=""){
+                Ptxt.innerHTML = rPlaceTxt;
+            }
+        }
+        oAgain.onclick = function () {
+            Ptxt.innerHTML = Txt;
+        }
+    </script>
+</body>
+</html>

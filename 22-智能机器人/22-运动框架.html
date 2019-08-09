@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="智能机器人" content="智能机器人">
+    <title>22-图片飞入</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        body{
+            background-color: #ddd;
+        }
+        #box{
+            position: relative;
+            width: 640px;
+            height: 400px;
+            margin:50px auto;
+            border:1px solid #fff;
+            font-size: 0;
+        }
+        #box span{
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            opacity: 0;
+            width:32px;
+            height: 40px;
+            background: url("images/1.jpg") no-repeat;
+            background-position: 0px 0px;
+        }
+    </style>
+    <script src="js/animation.js"></script>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <div id="box">
+    	<span></span>
+    </div>
+    <script>
+        var box = document.getElementById("box"),
+            Spans = box.getElementsByTagName("span"),
+																																																																																																																																																																																																																																																																																														            col = 20,
+            row = 10,
+            w= 640/col,//宽32
+            h = 400/row,//高40
+            str = "",
+            index = 0;
+        for(var i=0;i<row;i++){
+            for(var j=0;j<col;j++){
+                str +=  "<span style='background-position: -"+j*w+"px -"+i*h+"px'></span>";
+            }
+        }
+
+        box.innerHTML = str;
+        var arr=[];
+        for(var i=0,len = Spans.length;i<len;i++){
+            // Spans[i] = i,
+            arr[i] = i;
+        }
+//        arr.sort(function (a,b) {
+//            return Math.random()-0.5;
+//        })
+        t=setInterval(fn,13)
+        function fn() {
+            index = Math.floor(Math.random()*arr.length);
+            if(index<len){
+                var x = (index%20)*w,
+                    y = Math.floor(index/20)*h;
+                    animation(Spans[arr[index]],{
+
+                    data: {
+                        left: x,
+                        top: y,
+                        opacity: 1,
+                    },
+                    option: {
+                        easing : "Expo",
+                        speed : "1"
+                    }
+                },300,function () {
+
+                })
+                index++;
+            }
+            else {
+                clearInterval(t)
+            }
+        }
+
+    </script>
+</body>
+</html>

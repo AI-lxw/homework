@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="智能机器人" content="智能机器人">
+    <title>23-时间滚动</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            overflow: hidden;
+            width: 350px;
+            height: 61px;
+            margin:100px auto;
+            text-align: center;
+        }
+        #box ul li {
+            float: left;
+            width: 41px;
+            height: 61px;
+
+        }
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+    <script src="js/animation.js"></script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li class="lis"><img class='time' src="images/0.png" ><img class='sub' src="images/0.png" ></li>
+            <li class="lis"><img class='time' src="images/0.png" ><img class='sub' src="images/0.png" ></li>
+            <li><img src="images/d.png" alt=""></li>
+            <li class="lis"><img class='time' src="images/0.png" ><img class='sub' src="images/0.png" ></li>
+            <li class="lis"><img class='time' src="images/0.png" ><img class='sub' src="images/0.png" ></li>
+            <li><img src="images/d.png" alt=""></li>
+            <li class="lis"><img class='time' src="images/0.png" ><img class='sub' src="images/0.png" ></li>
+            <li class="lis"><img class='time' src="images/0.png" ><img class='sub' src="images/0.png" ></li>
+        </ul>
+    </div>
+    <script>
+        var box = document.getElementById("box"),
+            Lis = box.getElementsByClassName("lis"),
+            Imgtime = box.getElementsByClassName("time"),
+            Imgsub = box.getElementsByClassName("sub");
+        for(var i=0;i<Imgtime.length;i++){
+            Imgtime.index = i;
+            Imgtime[i].num = "0";
+        }
+        setInterval(function () {
+            var Time = new Date(),
+                hh = Time.getHours(),
+                mm = Time.getMinutes(),
+                ss = Time.getSeconds(),
+                str = timeformat(hh) + timeformat(mm) + timeformat(ss);
+                console.log(str)
+            for(var i=0;i<Imgtime.length;i++){
+                if(Imgtime[i].num !== str[i]){//判断，当Imgtime的序号对应的str的时间的值不相等时执行
+                    Imgtime[i].num = str[i];//更新Imgtime
+                    Imgsub[i].src = "images/"+str[i]+".png";
+                    animation(Lis[i],{
+                        data:{
+                            "marginTop": -61,
+                        }
+                    },500,function () {
+                        for(var i=0;i<Imgtime.length;i++){//上移的过程中把time中的时间变为当前时间
+                            Imgtime[i].src = "images/"+str[i]+".png";
+                        }
+                        this.style.marginTop = 0;
+                    })
+                }
+            }
+        },1000)
+        function timeformat(t) {
+            return (t<10? "0"+t: t+"");
+        }
+
+
+    </script>
+</body>
+</html>

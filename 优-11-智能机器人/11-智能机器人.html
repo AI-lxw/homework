@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-36期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 500px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #box ul li{
+            height: 40px;
+            padding-top: 20px;
+            border-bottom:1px solid #ccc;
+        }
+        #box ul li p,#box ul li input{
+            float: left;
+            outline: none;
+            border: none;
+        }
+        #box ul li p{
+            text-indent: 10px;
+        }
+        #box ul li input{
+            display: none;
+            margin-left: 10px;
+            width: 80%;
+            height: 25px;
+        }
+        #box ul li botton{
+            float: right;
+            padding:3px;
+            margin-right: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #eee;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li>
+                <p>姓名</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+            <li>
+                <p>姓名</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+            <li>
+                <p>姓名</p>
+                <input type="text">
+                <botton>修改</botton>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var oBox = document.getElementById("box"),
+            Lis = oBox.getElementsByTagName("li"),
+            Ps = oBox.getElementsByTagName("p"),
+            Input = oBox.getElementsByTagName("input"),
+            Btn = oBox.getElementsByTagName("botton");
+
+        for(var i=0,len = Lis.length;i<len;i++) {
+            Btn[i].index = i;
+            Btn[i].onOff = true;
+            Btn[i].onclick = function () {
+                var index = this.index;
+                if(this.onOff){
+                    Ps[index].style.display = "none";
+                    Input[index].style.display = "block";
+                    this.innerHTML = "确认";
+                    this.style.backgroundColor = "#000";
+                    this.style.color = "#fff";
+                }else{
+                    Ps[index].innerHTML = Input[index].value;
+                    Ps[index].style.display = "block";
+                    Input[index].style.display = "none";
+                    this.innerHTML = '修改';
+                    this.style.backgroundColor = "#eee";
+                    this.style.color = "#000";
+                }
+                this.onOff = !this.onOff;
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能机器人</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+        }
+        img{
+            vertical-align: top;
+        }
+        #wrap{
+            /* overflow: hidden; */
+            position: relative;
+            width: 730px;
+            height: 336px;
+            margin:50px auto;
+            
+        }
+        #wrap .img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 1000%;
+        }
+        .img li{
+            float: left;
+        }
+
+
+        .tab{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -78px;
+            width: 150px;
+            height: 30px;
+            padding-left:10px;
+            background: rgba(0,0,0,.2);
+            border-radius: 15px;
+            transition: .5s;
+            transform: scale(.8);
+        }
+        .tab:hover{
+            background: rgba(0,0,0,.5);
+            transform: scale(1.2);
+        }
+        .tab li{
+            width: 15px;
+            height: 15px;
+            float: left;
+            background: #E7E6E3;
+            border-radius: 50%;
+            margin: 7px 15px 0 0;
+            cursor: pointer;
+        }
+        .tab li.on{
+            position: absolute;
+            top: 0px;
+            background: #B10A0A;
+            opacity: 1;
+            z-index: 99;
+        }
+        #wrap>div{
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            width: 30px;
+            height: 60px;
+            background: rgba(0,0,0,.2);
+            text-align: center;
+            font-size: 18px;
+            line-height: 60px;
+            color: #fff;
+            cursor: pointer;
+        }
+        #wrap>div:hover{
+            background: rgba(0,0,0,.5);
+        }
+        .next{
+            right: 0;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="box">
+        <div id="wrap">
+            <ul class="img">
+                <li><img src="img/1.jpg"></li>
+                <li><img src="img/2.jpg"></li>
+                <li><img src="img/3.jpg"></li>
+                <li><img src="img/4.jpg"></li>
+                <li><img src="img/5.jpg"></li>
+                <li><img src="img/1.jpg"></li>
+            </ul>
+            <ul class="tab">
+                <li class="on"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="prev"><</div>
+            <div class="next">></div>
+        </div>
+    </div>
+    <script src="js/animation.js"></script>  
+    <script>
+        var oBox = document.getElementById("box"),
+            oWrap = document.getElementById("wrap"),
+            Imgs = oWrap.getElementsByClassName("img")[0],
+            imgLi = Imgs.getElementsByTagName("li"),
+            oTab = document.getElementsByClassName("tab"),
+            Lion = document.querySelector(".tab>li.on"),
+            TabLi = document.querySelectorAll(".tab>li"),
+            Next = document.getElementsByClassName("next")[0],
+            Prev = document.getElementsByClassName("prev")[0],
+            Width = 730,
+            date = new Date(),
+            Index = 0;
+            console.log(TabLi);
+            
+        for (let i = 0; i < TabLi.length; i++) {
+            
+            console.log(i);
+            TabLi[i].onclick = function(){
+                console.log(i);
+                // animation(imgLi,{
+                //         data:{
+                //             left:-Width*(i -1)
+                //         },
+                //         option:{
+                //             easing : "Back",
+                //             speed: 1
+                //         }
+                // },500)
+                animation(imgLi,{
+  						data:{
+  							left: (i -1) * -Width
+  						},
+  						option:{
+  							easing:"Back",
+  							speed:1
+  						}
+  				},500);
+                
+            }
+            
+        }
+
+  		//下一张
+        Next.onclick = function(){
+            if(new Date() - date  > 500) {
+                Index ++;
+                animation(Imgs,{
+                    data:{
+                        left: -Width*Index
+                    },
+                    option:{
+                        easing:"Back",
+                        speed:1
+  					}
+                },500,function(){
+                    if (Index == imgLi.length -1) {
+                        this.style.left = 0;
+                        Index = 0;
+                    }
+                })
+                date = new Date();    
+            }   
+        }
+        //上一张
+        Prev.onclick = function(){
+            if(new Date() - date  > 500) {
+                console.log(Index);
+                if (Index === 0 ){ //一上来先判断 是否先点的Prev
+                    Imgs.style.left = -Width*(imgLi.length-1)  + "px"; //先拉到倒数第三张 
+                    animation(Imgs,{                                   //再让它整体右移动 避免直接回到倒数第二张的尴尬效果
+                        data:{
+                            left: -Width*(imgLi.length-2),
+                        },
+                        option:{
+                            easing:"Back",
+                            speed:1
+                        }
+                    },500)
+                    Index = imgLi.length-1;
+                }
+                Index --;
+                animation(Imgs,{
+                        data:{
+                            left: -Width * Index,
+                        },
+                        option:{
+                            easing:"Back",
+                            speed:1
+                        }
+                    },500)
+                date = new Date();
+            } 
+           
+                
+        }
+    </script>
+</body>
+</html>

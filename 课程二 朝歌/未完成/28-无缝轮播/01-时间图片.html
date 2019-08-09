@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+        }
+        #box{
+            width:350px;
+            margin: auto;
+        }
+    
+        ul {
+          overflow: hidden;
+          height: 61px;
+          margin: 100px auto;
+        }
+    
+        ul>li {
+    
+          list-style: none;
+          float: left;
+          width: 41px;
+          height: 122px;
+          text-align: center;
+          background: pink;
+        }
+      </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+          <li class="list">
+            <img class="time" src="images/0.png" alt="">
+            <img class="sub" src="images/1.png" alt="">
+          </li>
+          <li class="list">
+            <img class="time" src="images/0.png" alt="">
+            <img class="sub" src="images/0.png" alt="">
+          </li>
+          <li>
+            <img src="images/d.png" alt="">
+          </li>
+          <li class="list">
+            <img class="time" src="images/0.png" alt="">
+            <img class="sub" src="images/0.png" alt="">
+          </li>
+          <li class="list">
+            <img class="time" src="images/0.png" alt="">
+            <img class="sub" src="images/0.png" alt="">
+          </li>
+          <li>
+            <img src="images/d.png" alt="">
+          </li>
+          <li class="list">
+            <img class="time" src="images/0.png" alt="">
+            <img class="sub" src="images/0.png" alt="">
+          </li>
+          <li class="list">
+            <img class="time" src="images/0.png" alt="">
+            <img class="sub" src="images/0.png" alt="">
+          </li>
+        </ul>
+    </div>
+    <script src="moveTimes.js"></script>
+    <script>
+        const   aList = document.getElementsByClassName("list"),
+                aTime = document.getElementsByClassName("time"),
+                aSub = document.getElementsByClassName("sub"),
+                len = aTime.length;
+        for(let i=0;i<len;i++){
+            aTime[i].num = 0;//给每一个时间图片注册自定义属性,起始为0,后面用赋值的方式来改变(自定义属性是方便和图片内容做参考)
+        }
+        const   fun = () => {
+            let dateStr = new Date().toTimeString().slice(0,8).split(":").join("");//首先取时间,然后通过slice取出我们想要的时间部分,然后用split和join的方法转成我们需要的数字时间部分,从前往后一个方法一个方法的看
+            console.log(dateStr);
+            for(let i=0;i<len;i++){
+                if(dateStr[i] === aTime[i].num) continue;//判断时间图片自定义属性和获取的时间是否相同,相同就不变化
+                aSub[i].src = `images/${dateStr[i]}.png`;
+                aTime[i].num = dateStr[i];//获取的时间赋值给自定义属性
+                Move(aList[i],{"margin-top":-65},700,()=>{
+                    aTime[i].src = `images/${dateStr[i]}.png`;
+                    aList[i].style.marginTop = 0;
+                });//先改变了下面图片的时间,然后通过运动让整个li往上面走的同时,回调改变上面time图片的路径,和走上去的li重合,然后瞬间让li回来,造成一个假象
+            }
+        }
+        //fun();
+        setInterval(fun,1000);
+    </script>
+</body>
+</html>

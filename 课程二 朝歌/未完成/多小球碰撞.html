@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>canvas多小球碰撞</title>
+</head>
+<body>
+	<canvas></canvas>
+	<script>
+		var canvas = document.querySelector("canvas"),
+			ctx = canvas.getContext("2d"),
+			Width = document.documentElement.clientWidth,//视口宽度
+			Height = document.documentElement.clientHeight;//视口高度
+		canvas.width = Width;
+		canvas.height = Height;
+
+		var proBall = {
+			speedMin:-7,//速度最大最小值
+			speedMax:7,
+			Rmin : 10,//半径最大最小值
+			Rmax : 20,
+			Num :10//球数量
+		}
+		window.onresize = function () {
+			Width = document.documentElement.clientWidth,
+			Height = document.documentElement.clientHeight;
+    	}
+
+		//随机函数
+		function random(min,max) {
+			return Math.floor(Math.random()*(max - min) + min);
+		}
+
+		//定义球的属性
+		function Balls(x,y,vX,vY,color,size) {
+			this.x = x;
+			this.y = y;
+			this.vX = vX;
+			this.vY = vY;
+			this.color = color;
+			this.size = size;
+		}
+
+		//定义画圆的方法
+		Balls.prototype.draw = function(){
+			ctx.beginPath();
+			ctx.fillStyle = this.color;
+			ctx.arc(this.x,this.y,this.size,0,2*Math.PI);
+			ctx.fill();
+		}	
+
+		//生成小球
+		function createBall() {
+			var x = random(0,Width),
+				y = random(0,Height),
+				r = random(proBall.Rmin,proBall.Rmax),
+				createBalls = [];
+
+			for (var i = 0; i < createBalls.length; i++) {
+				var dx = createBalls[i].x - x,
+					dy = createBalls[i].y - y,
+					dis = Math.sqrt(dx * dx + dy *dy);
+				if (dis < createBalls[i].r + r) {
+					return createBall();
+				}
+	
+			}
+			var aBall = {
+				x:x,
+				y:y,
+				r:r
+			}
+			createBalls.push(aBall);
+			return aBall;
+		}
+		
+		
+		// createBall();
+		//判断碰撞
+		Balls.prototype.update = function(){
+			if ((this.x + this.size) >= Width) {
+				this.vX = -this.vX;
+			}
+			if ((this.x - this.size) <= 0) {
+				this.vX = -this.vX;
+			}
+			if ((this.y + this.size) >= Height) {
+				this.vY = -this.vY;
+			}
+			if ((this.y - this.size) <= 0) {
+				this.vY = -this.vY;
+			}
+			this.x += this.vX;
+			this.y += this.xY;
+		}
+
+		var arrBalls = [];
+		//速度检测判断
+		function checkSpeeed(s) {
+			if (s > proBall.speedMax) {
+				s = proBall.speedMax;
+			}else if (s < proBall.speedMin) {
+				s = proBall.speedMin;
+			}
+			return s;
+		}
+		//碰撞检测
+		Balls.prototype.Detect = function(){
+			for (var i = 0; i < arrBalls.length; i++) {
+				var myBall = arrBalls[i];
+				if (myBall !== this) {
+					var nvX = this.x + this.vX - (myBall.x + myBall.vX),
+						nvY = this.y + this.vY - (myBall.y + myBall.vY),
+						dis = Math.sqrt(nvX*nvX + nvY*nvY);
+					//碰撞后弹回
+					if (dis <= this.size + myBall.size) {
+						myBall.color = this.color = `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`;
+						//弹回
+						//计算差值
+						var dvx = this.vX - myBall.vX,
+							dvy = this.vY - myBall.vY,
+							dx = this.x - myBall.x,
+							dy = this.y - myBall.y,
+							xx_yy = dx*dx + dy*dy,
+							v_dvx = (dvx*dx*dx + dvy*dx*dy)/xx_yy,
+							v_dvy = (dvy*dy*dy + dvx*dx*dy)/xx_yy;
+							this.vX = checkSpeeed(this.vX - v_dvx);
+							this.vY = checkSpeeed(this.vY - v_dvy);
+							myBall.vX = checkSpeeed(myBall.vX + v_dvx),
+							myBall.vY = checkSpeeed(myBall.vY + v_dvy);
+					}
+				}	
+				
+			}
+		}
+		
+		// 循环画球球
+		function loop(){
+			ctx.fillStyle = `rgba(0,0,0,0.25)`;
+			ctx.fillRect(0,0,Width,Height);
+			console.log(arrBalls.length);
+			
+			while (arrBalls.length < proBall.Num){
+				var b_creat = createBall();
+				var NewBall = new Balls(
+						b_creat.x,
+						b_creat.y,
+						random(proBall.speedMin,proBall.speedMax),
+						random(proBall.speedMin,proBall.speedMax),
+						`rgb(${random(0,255)},${random(0,255)},${random(0,255)})`,
+						b_creat.r
+					);
+					arrBalls.push(NewBall)
+			}
+			arrBalls[1].update();
+			// for (var  i = 0; i < arrBalls.length; i++) {
+			// 	arrBalls[i].draw();
+			// 	arrBalls[i].Detect();
+			// 	arrBalls[i].update();
+				
+				
+			// }
+			requestAnimationFrame(loop);
+		}
+		loop();
+		console.log(arrBalls);
+		console.log(arrBalls);
+		
+	</script>
+</body>
+</html>

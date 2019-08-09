@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>12-执行顺序-机器人</title>
+</head>
+
+<body>
+    <script>
+    	/*
+    		（1）a = function a() {
+					var a = 20;
+					lert(a);
+				}
+			（2）10
+			（3）10
+			（4）30
+			（5）a = function a() {
+        				var a = 20;
+        				alert(a);
+    			}
+			（6）20
+			（7）a = function a() {
+        				var a = 20;
+        				alert(a);
+    			}
+
+
+
+
+    	
+			全局：
+				1.编译：
+					var a//被覆盖
+
+					function a() {
+        				alert(20);
+    				}//function 权重最高
+
+    				var a//被覆盖
+					
+					var a = function a() {
+					    var a = 20;
+					    alert(a);
+					}//被覆盖
+				2.执行：
+					alert(a);//找声明，此时a是函数名为a的函数函数
+							 --->a = function a() {
+					    				var a = 20;
+					    				alert(a);
+									}
+
+					alert(a);//a = 10;
+							 --->10
+					
+					alert(a);//a = 10;
+							 --->10
+					
+					alert(a)//a = 30;
+							 --->30
+					
+					alert(a);//此时a是函数名为a的函数函数 
+    							--->a = function a() {
+        								var a = 20;
+        								alert(a);
+    								}
+
+					a();//执行函数a= function a() {
+        							var a = 20;
+        							alert(a);
+    							}
+    							1.编译
+    								var a
+    							2.执行
+									alert(a);//a = 20;
+										--->20
+
+					alert(a);//	找声明，此时a是函数名为a的函数函数
+								--->a= function a() {
+        								var a = 20;
+        								alert(a);
+    								}				
+
+    	*/
+    alert(a);
+    var a = 10;
+    alert(a); 
+    function a() {
+        alert(20);
+    }
+    alert(a); 
+    var a = 30;
+    alert(a); 
+    var a = function a() {
+        var a = 20;
+        alert(a);
+    }
+
+    alert(a); 
+    a(); 
+    alert(a); 
+    </script>
+</body>
+
+</html>

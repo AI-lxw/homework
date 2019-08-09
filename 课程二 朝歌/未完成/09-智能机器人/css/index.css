@@ -1,0 +1,369 @@
+@charset 'UTF-8';
+body,h1,h2,h3,h4,h5,h6,p,dd{margin:0;}
+ul,ol,dl{margin:0;padding:0;list-style:none;}
+img{border:none;vertical-align:middle;}
+input{outline:none;border:none;}
+a{text-decoration:none;color:inherit;outline:none;}
+b{font-weight: normal;}
+em{
+    font-style: normal;
+}
+body{font:12px/1.5 'Microsoft Yahei',sans-serif;/*sans-serif 是手机默认字体*/color: #3c3c3c;height: 1200px;}
+.clearfix:after{
+    content: '';
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+}
+.fl{float:left;}
+.fr{float:right;}
+/* star nav */
+.shopping .nav{
+    width: 100%;
+    height: 35px;
+    border-bottom: 1px solid #eee;
+    background-color: #f5f5f5;
+}
+/* star header */
+.shopping .header{
+    width: 1190px;
+    margin: auto;
+    padding: 20px 0 40px;
+}
+.shopping .header h1{
+    height: 45px;
+    width: 180px;
+    background: url("../images/ui/3.png") no-repeat -112px 0;
+}
+/* star body */
+.shopping .body{
+    width: 1190px;
+    margin: auto;
+}
+/* 头部 */
+.shopping .body .top{
+    width: 100%;
+    height: 35px;
+    border-bottom: 2px solid #e6e6e6;
+}
+.shopping .body .top > ul> li:first-child{
+    color: #F40;
+}
+.shopping .body .top > ul> li ~ li{
+    border-left: 1px solid #E8E8E8;
+}
+.shopping .body .top > ul > li{
+    float: left;
+    width: 132px;
+    height: 17px;
+    line-height: 1.1;
+    padding-left: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #3c3c3c;
+}
+.shopping .body .top > ul > li > span{
+    padding: 5px;
+    font-size: 12px/1.5;
+    font-weight: 500;
+    color: #F40;
+}
+.shopping .body .top .t-right #sum{
+    display: inline-block;
+    width: 55px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 3px;
+    background-color: #AAAAAA;
+    text-align: center;
+    color: #fff;
+    
+}
+.shopping .body .top .t-right strong{
+    padding-left: 2px;
+    font-weight: 700;
+    font-family: Verdana,Arial;
+    color: #F40;
+}
+/* 表头 */
+.shopping .body .th{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+.shopping .body .th ul > li{
+    float: left;
+}
+.shopping .body .check{
+    width: 75px;
+}
+.shopping .body .check em{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin: 0 10px 0 15px;
+    background: url("../images/ui/3.png") no-repeat 0 0 ;
+}
+.shopping .body .check em.on{
+    background-position: 0 -20px;
+}
+.shopping .body .item{
+    width: 342px;
+    text-indent: 90px;
+}
+.shopping .body .info{
+    height: 50px;
+    width: 212px;
+    padding-right: 40px;
+}
+.shopping .body .price{
+    width: 130px;
+}
+.shopping .body .amount{
+    width: 120px;
+}
+.shopping .body .sum{
+    width: 140px;
+}
+.shopping .body .handle{
+    width: 119px;
+    padding: 0 0 0 10px;
+}
+/* 商品列表 */
+.shopping .body .item-list .shop{
+    width: 100%;
+    height: 37px;
+    line-height: 37px;
+}
+.shopping .body .item-list .shop em{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin: 0 15px 9px 15px;
+    background:url("../images/ui/3.png") no-repeat 0 0 ;
+}
+.shopping .body .item-list .shop span{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+    background: url("../images/ui/3.png") no-repeat -19px -127px;
+}
+.shopping .body .item-list .shop i{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 10px;
+    background: url("../images/ui/2.gif") no-repeat -82px 0;
+}
+/* 商品清单 */
+.shopping .body .item-list .list{
+    border: 1px solid #ccc;
+}
+.shopping .body .item-list .list > li{
+    background-color: #FCFCFC;
+}
+.shopping .body .item-list .list li > ul >li{
+    position: relative;
+    float: left;
+}
+.body .item-list .list .contain{
+    padding-top: 20px;
+    height: 112px;
+}
+.body .item-list .list .contain:hover .info{
+    border-color: #dbebfe;
+}
+.body .item-list .list .contain:hover .info > span.pen{
+    display: block;
+}
+.body .item-list .list .contain li.chk{
+    width: 75px;
+    padding-top: 0;
+}
+.body .item-list .list .contain .item > img{
+    position: relative;
+    vertical-align: middle;
+    width: 82px;
+    height: 82px;
+}
+
+
+.body .item-list .list .contain .item .massage{
+    
+    margin-left: 8px;
+    width: 226px;
+    text-indent: 0;
+}
+.list .contain .item .massage a:hover{
+    text-decoration: underline;
+    color: #F40;
+}
+.list .contain .item .massage .icon{
+    position: absolute;
+    bottom: 0;
+}
+.list .contain .item .massage .icon img.img1{
+    width: 14px;
+    height: 16px;
+}
+.list .contain .item .massage .icon img.img2{
+    width: 16px;
+    height: 16px;
+}
+.shopping .body .list .contain .info{
+    position: relative;
+    padding: 10px 0;
+    height: 75px;
+    border: 1px dashed transparent;
+    padding-right: 10px;
+    color:#9c9c9c;;
+}
+.shopping .body ul.on{
+    background-color: #FFF8E1;
+}
+.shopping .body .list .contain .info:hover{
+    background-color: #fff;
+    border-color: #F40;
+}
+.shopping .body .list .contain .info:hover span.write{
+    display: block;
+}
+.list  .contain .info p{
+    margin: 0 3px 0 8px;
+}
+
+.list  .contain .info > span.pen{
+    display: none;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    width: 19px;
+    height: 17px;
+    background: url("../images/ui/1.png") no-repeat -107px -195px;
+    overflow: hidden;
+    line-height: 200px;
+}
+.list  .contain .info > span.write{
+    display: none;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    padding: 2px 3px 0;
+    background-color: #FF6600;
+    overflow: hidden;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+}
+.list  .contain .price{
+    text-indent: 25px;
+}
+.list  .contain .price em{
+    display: block;
+}
+.list  .contain .price .origin{
+    text-decoration-line: line-through;
+    color: #9c9c9c;
+}
+.list  .contain .price .new-price{
+    font-weight: 700;
+}
+.list  .contain .amount{
+    height: 119px;
+}
+.list  .contain .amount span{
+    position: absolute;
+    top: 0;
+    display: block;
+    height: 23px;
+    width: 17px;
+    border: 1px solid #e5e5e5;
+    background: #f0f0f0;
+    text-align: center;
+    line-height: 23px;
+    color: #444;
+    cursor: pointer;
+}
+.list  .contain .amount span.right{
+    left: 59px;
+}
+.list  .contain .amount input{
+    position: absolute;
+    left: 18px;
+    top: 0;
+    width: 39px;
+    height: 15px;
+    line-height: 15px;
+    border: 1px solid #aaa;
+    color: #343434;
+    text-align: center;
+    padding: 4px 0;
+    background-color: #fff;
+}
+.list  .contain .sum{
+    text-indent: 30px;
+    color: #F40;
+    font-size: 14px;
+    font-weight: 700;
+}
+.list  .contain .handle{
+    text-indent: 35px;
+}
+.list  .contain a:hover{
+    color: #F40;
+    text-decoration: underline;
+}
+
+/* 结算bar */
+.foot{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    margin-left: -595px;
+    width: 1190px;
+    height: 50px;
+    background-color: #eee;
+}
+.foot .fr{
+    position: relative;
+    width: 431px;
+    line-height: 50px;
+}
+.foot .fr .txt{
+    margin-left: 10px;
+}
+.foot .fr .total{
+    color: #f40;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 3px;
+}
+.foot .fr .totalPrice{
+    color: #F40;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 3px;
+}
+.foot .fr .btn{
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 119px;
+    background: #B0B0B0;
+    color: #fff;
+    border-left: 1px solid #e7e7e7;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+.foot .fr .on{
+    background-color: #f40;
+}
+
+
+
